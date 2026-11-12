@@ -1,0 +1,2 @@
+# Redirect all broken or non-existent URLs to the main practice test page
+/*    /index.html   200
