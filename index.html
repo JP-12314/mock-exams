@@ -15152,7 +15152,7 @@ Student Request: ${userPrompt}`;
 
     let _securityConfig = {
       roster: DEFAULT_CANDIDATE_ROSTER,
-      cloudSheetUrl: "",
+      cloudSheetUrl: "https://script.google.com/macros/s/AKfycbzln3gOuBzTDL8KJg84BrC8hAxQ-UXqgI5gV1DgClvQiukVVjDRXm3gWAv-r8_MKR2j2Q/exec",
       strictOneDevice: true,
       adminPin: ADMIN_PIN_DEFAULT
     };
@@ -15165,6 +15165,9 @@ Student Request: ${userPrompt}`;
       const savedConfig = localStorage.getItem("ncnz_admin_security_config");
       if (savedConfig) {
         _securityConfig = { ..._securityConfig, ...JSON.parse(savedConfig) };
+      }
+      if (!_securityConfig.cloudSheetUrl || _securityConfig.cloudSheetUrl.trim() === "" || !_securityConfig.cloudSheetUrl.includes("AKfycbzln3gOuBzTDL8KJg84BrC8hAxQ")) {
+        _securityConfig.cloudSheetUrl = "https://script.google.com/macros/s/AKfycbzln3gOuBzTDL8KJg84BrC8hAxQ-UXqgI5gV1DgClvQiukVVjDRXm3gWAv-r8_MKR2j2Q/exec";
       }
       if (!_securityConfig.adminPin || _securityConfig.adminPin === "8888") {
         _securityConfig.adminPin = "1429";
@@ -15812,7 +15815,7 @@ Student Request: ${userPrompt}`;
         <p style="margin:0 0 10px 0; font-size:12px; color:#3b82f6; line-height:1.4;">
           Want real-time device tracking from your phone without editing code? Paste your Google Apps Script Web App URL below:
         </p>
-        <input type="url" id="adminGoogleSheetUrlInput" placeholder="Paste your Google Sheet share link or Apps Script URL" style="width:100%; box-sizing:border-box; height:38px; padding:0 12px; border-radius:8px; border:1px solid #cbd5e1; font-size:12.5px; margin-bottom:10px;" />
+        <input type="url" id="adminGoogleSheetUrlInput" value="https://script.google.com/macros/s/AKfycbzln3gOuBzTDL8KJg84BrC8hAxQ-UXqgI5gV1DgClvQiukVVjDRXm3gWAv-r8_MKR2j2Q/exec" placeholder="Paste your Google Sheet share link or Apps Script URL" style="width:100%; box-sizing:border-box; height:38px; padding:0 12px; border-radius:8px; border:1px solid #cbd5e1; font-size:12.5px; margin-bottom:10px;" />
         <div style="display:flex; gap:8px;">
           <button type="button" id="saveSheetUrlBtn" class="btn btn-secondary" style="font-weight:750; font-size:12px;">Save Cloud URL</button>
           <button type="button" id="copyAppsScriptTemplateBtn" class="btn btn-secondary" style="font-weight:750; font-size:12px;">📋 Copy Google Sheet Script</button>
