@@ -1285,6 +1285,28 @@
       transition:all .15s ease;
     }
     #openMentalHealthSheet:hover { background:#e0f2fe; }
+    #openFirstTimerGuideBtn {
+      margin-right: 12px;
+      font-weight: 800;
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #86efac;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      transition: all .15s ease;
+    }
+    #openFirstTimerGuideBtn:hover { background: #dcfce7; }
+    #openFirstTimerGuideBtn .cs-btn-text-short { display: none; }
+    #openFirstTimerGuideBtn .cs-btn-text-full { display: inline; }
+    [data-theme="dark"] #openFirstTimerGuideBtn {
+      background: rgba(34, 197, 94, 0.15) !important;
+      color: #86efac !important;
+      border-color: rgba(34, 197, 94, 0.35) !important;
+    }
     #openMentalHealthSheet .cs-btn-text-short { display:none; }
     #openMentalHealthSheet .cs-btn-text-full { display:inline; }
 
@@ -4000,8 +4022,8 @@
     /* Row 2: 4 Clinical Reference Buttons (Equal 4-Column Grid, Zero Overflow) */
     .topbar-clinical-strip {
       display: grid !important;
-      grid-template-columns: repeat(4, 1fr) !important;
-      gap: 6px !important;
+      grid-template-columns: repeat(5, 1fr) !important;
+      gap: 5px !important;
       width: 100% !important;
       padding: 0 !important;
       margin: 0 !important;
@@ -4577,11 +4599,6 @@
       <!-- Single Page Container (Flip Mode) -->
       <div id="mangaSinglePageContainer" style="display:none; width:100%; max-width:800px; margin:0 auto; min-height:80vh; align-items:center; justify-content:center; position:relative;">
         <canvas id="mangaSingleCanvas" style="max-width:100%; height:auto; border-radius:6px; box-shadow:0 8px 32px rgba(0,0,0,0.6); display:none;"></canvas>
-      </div>
-
-      <!-- Iframe fallback for offline/direct file view -->
-      <div id="mangaIframeFallback" style="display:none; width:100%; height:calc(100vh - 120px); max-width:1100px; margin:0 auto;">
-        <iframe id="pdfViewerFrame" src="about:blank" style="width:100%; height:100%; border:none; border-radius:8px;" title="State Exam Revision Guide Document"></iframe>
       </div>
     </main>
 
@@ -5999,6 +6016,260 @@
       </div>
     </div>
   </dialog>
+
+  <!-- ============================================================ -->
+  <!-- 💡 FIRST-TIMER WALKTHROUGH & FEATURE GUIDE MODAL             -->
+  <!-- ============================================================ -->
+  <dialog id="firstTimerGuideModal" class="cs-dialog">
+    <div class="cs-dialog-inner">
+      <div class="cs-header" style="background: linear-gradient(135deg, #047857 0%, #0d9488 100%);">
+        <div class="cs-header-content">
+          <span class="cs-header-icon">💡</span>
+          <div>
+            <h2 class="cs-header-title">How to Use the Study Hub</h2>
+            <div class="cs-header-sub">Candidate feature tour, authentic exam rules, clinical tools &amp; passing strategy</div>
+          </div>
+        </div>
+        <button id="closeFirstTimerGuideBtn" class="cs-close-btn" type="button" aria-label="Close Guide">&times;</button>
+      </div>
+
+      <div class="cs-tabs-bar" role="tablist">
+        <button class="cs-tab btn btn-secondary active guide-tab" data-tab="guide-quick" type="button" role="tab" aria-selected="true" style="background:#059669; color:#fff; border-color:#059669;">🚀 1. Quick Start</button>
+        <button class="cs-tab btn btn-secondary guide-tab" data-tab="guide-exams" type="button" role="tab" aria-selected="false">📝 2. Mock Exams</button>
+        <button class="cs-tab btn btn-secondary guide-tab" data-tab="guide-refs" type="button" role="tab" aria-selected="false">📋 3. Clinical References</button>
+        <button class="cs-tab btn btn-secondary guide-tab" data-tab="guide-queue" type="button" role="tab" aria-selected="false">🎯 4. Smart Queue</button>
+        <button class="cs-tab btn btn-secondary guide-tab" data-tab="guide-security" type="button" role="tab" aria-selected="false">🔒 5. 1-Device &amp; Sync</button>
+        <button class="cs-tab btn btn-secondary guide-tab" data-tab="guide-tutor" type="button" role="tab" aria-selected="false">🤖 6. AI Clinical Tutor</button>
+      </div>
+
+      <div class="cs-body" id="firstTimerGuideBody">
+        <!-- TAB 1: QUICK START -->
+        <div id="guide-quick" class="cs-tab-content guide-tab-content" role="tabpanel">
+          <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:12px; padding:14px 18px; margin-bottom:14px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+              <span style="font-size:18px;">🎯</span>
+              <strong style="font-size:14.5px; color:#166534;">The Official NCNZ State Examination Standard</strong>
+            </div>
+            <p style="margin:0; font-size:12.5px; color:#15803d; line-height:1.5;">
+              The Registered Nurse State Final Examination (Maxexam format) consists of <strong>120 Multiple Choice Questions (MCQs)</strong> in <strong>130 minutes</strong> (65 seconds per question). The overall pass benchmark is <strong>70%</strong> (&ge; 84 / 120 correct), with <strong>100% mastery expected on Part A (Drug Calculations)</strong>.
+            </p>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px; margin-bottom:14px;">
+            <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px; box-shadow:0 2px 6px rgba(0,0,0,0.03);">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                <span style="background:#e0f2fe; color:#0369a1; padding:4px 8px; border-radius:6px; font-weight:800; font-size:11px;">LOOP</span>
+                <strong style="color:#0f172a; font-size:13.5px;">⚡ The 4-Step Daily Study Plan</strong>
+              </div>
+              <ol style="margin:6px 0 0; padding-left:18px; font-size:12px; color:#334155; line-height:1.55;">
+                <li><strong>Take 1 Full Mock Exam:</strong> Experience authentic 130-minute exam pressure with score masking.</li>
+                <li><strong>Review Results Breakdown:</strong> Inspect your accuracy across Calculations, Cultural Safety, and Management of Care.</li>
+                <li><strong>Drill Missed Questions:</strong> Use the <strong>🎯 Smart Revision Queue</strong> to eliminate every repeat mistake.</li>
+                <li><strong>Reinforce High-Yield Knowledge:</strong> Consult Cheat Sheet, Patho, Pharm, and Psych trigger cards.</li>
+              </ol>
+            </div>
+
+            <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px; box-shadow:0 2px 6px rgba(0,0,0,0.03);">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                <span style="background:#fef3c7; color:#92400e; padding:4px 8px; border-radius:6px; font-weight:800; font-size:11px;">STRATEGY</span>
+                <strong style="color:#0f172a; font-size:13.5px;">⏱️ Short on Time? Master Pattern Recognition</strong>
+              </div>
+              <p style="margin:4px 0 8px; font-size:12px; color:#334155; line-height:1.5;">
+                NCNZ and Ara questions do not reward memorizing entire textbooks. They test rapid recognition of clinical triggers:
+              </p>
+              <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px; font-size:11.5px; line-height:1.45; color:#1e293b;">
+                <strong>1. Spot the Trigger:</strong> e.g. 4-year-old with joint pain 2 weeks after untreated sore throat.<br>
+                <strong>2. Identify Disease:</strong> Acute Rheumatic Fever (Group A Strep).<br>
+                <strong>3. Priority RN Action:</strong> Bed rest, anti-inflammatory, notify doctor, penicillin secondary prophylaxis.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: MOCK EXAMS -->
+        <div id="guide-exams" class="cs-tab-content guide-tab-content" hidden role="tabpanel">
+          <div style="background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:12px; padding:14px 18px; margin-bottom:14px;">
+            <strong style="color:#1e40af; font-size:13.5px; display:flex; align-items:center; gap:6px;">
+              <span>📝</span> 28 Authentic Mock Exam Banks (3,240+ Questions)
+            </strong>
+            <p style="margin:4px 0 0; font-size:12px; color:#1e3a8a; line-height:1.45;">
+              Includes the authentic <strong>Ara Institute 2024 Moodle Exam</strong>, <strong>2025/2026 Afternoon Recall Papers</strong>, Historical Reviewed Banks 1–20, and a dedicated <strong>Part A Drug Calculations Bank</strong>.
+            </p>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
+            <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px;">
+              <h4 style="margin:0 0 6px; color:#0f172a; font-size:13px; display:flex; align-items:center; gap:6px;">
+                <span>🔒</span> Strict In-Progress Score Masking
+              </h4>
+              <p style="margin:0; font-size:11.5px; color:#475569; line-height:1.45;">
+                While taking an exam, answer indicators, scores, and correct answers are <strong>locked and hidden</strong>. This eliminates confirmation bias and replicates the authentic psychological pressure of Maxexam testing. Full benchmarks and rationales are revealed only after submitting via <strong>Finish Test</strong>.
+              </p>
+            </div>
+
+            <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px;">
+              <h4 style="margin:0 0 6px; color:#0f172a; font-size:13px; display:flex; align-items:center; gap:6px;">
+                <span>🔀</span> Dynamic Option Shuffling on Reset
+              </h4>
+              <p style="margin:0; font-size:11.5px; color:#475569; line-height:1.45;">
+                Clicking <strong>Reset Exam</strong> randomly reshuffles the order of choices (A, B, C, D). This ensures you understand the clinical principle and reasoning rather than memorizing option letter positions.
+              </p>
+            </div>
+
+            <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px;">
+              <h4 style="margin:0 0 6px; color:#0f172a; font-size:13px; display:flex; align-items:center; gap:6px;">
+                <span>🚩</span> The Flag Button (&amp; Auto-Queueing)
+              </h4>
+              <p style="margin:0; font-size:11.5px; color:#475569; line-height:1.45;">
+                Not sure of an answer? Click <strong>🚩 Flag</strong>. When you submit your exam, all flagged questions automatically feed into your <strong>Smart Revision Queue</strong> for targeted practice!
+              </p>
+            </div>
+
+            <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px;">
+              <h4 style="margin:0 0 6px; color:#0f172a; font-size:13px; display:flex; align-items:center; gap:6px;">
+                <span>👁️</span> Exam Timer &amp; Clock Toggle
+              </h4>
+              <p style="margin:0; font-size:11.5px; color:#475569; line-height:1.45;">
+                The countdown timer displays 130 minutes. If watching the countdown causes anxiety, click the <strong>👁️ Eye Icon</strong> next to the clock to hide it while remaining on timed mode.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: CLINICAL REFERENCES -->
+        <div id="guide-refs" class="cs-tab-content guide-tab-content" hidden role="tabpanel">
+          <p style="margin:0 0 12px; font-size:12.5px; color:#475569;">
+            Access all 4 comprehensive clinical reference dialogs anytime from the topbar:
+          </p>
+
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="background:#ffffff; border:1px solid #e2e8f0; border-left:4px solid #4338ca; border-radius:8px; padding:10px 14px;">
+              <strong style="color:#4338ca; font-size:13px;">📋 Cheat Sheet:</strong>
+              <div style="font-size:11.5px; color:#334155; margin-top:3px; line-height:1.45;">
+                Calculations formulas (mL/hr, drops/min, paediatric mg/kg), Fluid &amp; Electrolyte imbalance rules (potassium ECG traps, sodium correction limits), Wound Care Staging 1–4, HDC 10 Rights, and Te Tiriti o Waitangi.
+              </div>
+            </div>
+
+            <div style="background:#ffffff; border:1px solid #e2e8f0; border-left:4px solid #059669; border-radius:8px; padding:10px 14px;">
+              <strong style="color:#059669; font-size:13px;">🩺 Common Pathophysiology:</strong>
+              <div style="font-size:11.5px; color:#334155; margin-top:3px; line-height:1.45;">
+                Structured 4-point trigger cards (What Is Broken, Stem Clues, Priority RN Action, Deadly Trap) for 2026 NZ Outbreaks (Pertussis, Measles, Meningococcal), Paediatrics, Maternal, Sepsis, and Shock.
+              </div>
+            </div>
+
+            <div style="background:#ffffff; border:1px solid #e2e8f0; border-left:4px solid #e11d48; border-radius:8px; padding:10px 14px;">
+              <strong style="color:#e11d48; font-size:13px;">💊 Pharmacology:</strong>
+              <div style="font-size:11.5px; color:#334155; margin-top:3px; line-height:1.45;">
+                NZ High-Alert Medications (APINCH), therapeutic levels (Lithium 0.6–1.0 mmol/L, Digoxin 0.5–2.0 µg/L), toxicity symptoms, and life-saving antidotes (Naloxone, Protamine, Vitamin K, Calcium Gluconate).
+              </div>
+            </div>
+
+            <div style="background:#ffffff; border:1px solid #e2e8f0; border-left:4px solid #7c3aed; border-radius:8px; padding:10px 14px;">
+              <strong style="color:#7c3aed; font-size:13px;">🧠 Mental Health:</strong>
+              <div style="font-size:11.5px; color:#334155; margin-top:3px; line-height:1.45;">
+                Mental Health Act 1992 key sections (Section 4 exclusions, Section 111 holding power for up to 6 hours), Clozapine WBC monitoring, and suicide risk protocols.
+              </div>
+            </div>
+
+            <div style="background:#ffffff; border:1px solid #e2e8f0; border-left:4px solid #0284c7; border-radius:8px; padding:10px 14px;">
+              <strong style="color:#0284c7; font-size:13px;">📖 Manga Revision Guide:</strong>
+              <div style="font-size:11.5px; color:#334155; margin-top:3px; line-height:1.45;">
+                Click <em>State Exam Revision Guide</em> on the homepage to open the full 237-page continuous vertical strip reader with dark AMOLED theme, chapter jump navigation, and a collapsible floating side dock.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: SMART QUEUE -->
+        <div id="guide-queue" class="cs-tab-content guide-tab-content" hidden role="tabpanel">
+          <div style="background:#fff7ed; border:1.5px solid #fed7aa; border-radius:12px; padding:14px 18px; margin-bottom:14px;">
+            <strong style="color:#c2410c; font-size:13.5px; display:flex; align-items:center; gap:6px;">
+              <span>🎯</span> Automatic Mistake Elimination
+            </strong>
+            <p style="margin:4px 0 0; font-size:12px; color:#9a3412; line-height:1.45;">
+              Every question you miss or flag in any mock exam is automatically added into your <strong>Smart Revision Queue</strong>. You never have to manually track what you got wrong!
+            </p>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
+            <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px;">
+              <h4 style="margin:0 0 6px; color:#0f172a; font-size:13px;">⚡ Start Weakness Drill</h4>
+              <p style="margin:0; font-size:11.5px; color:#475569; line-height:1.45;">
+                Click <strong>⚡ Start Weakness Drill</strong> on the homepage. The system quizzes you exclusively on your pending weak points. Answer a question correctly, and it is automatically cleared from your queue.
+              </p>
+            </div>
+
+            <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px;">
+              <h4 style="margin:0 0 6px; color:#0f172a; font-size:13px;">📊 Analytics &amp; Domain History</h4>
+              <p style="margin:0; font-size:11.5px; color:#475569; line-height:1.45;">
+                The Progress Analytics chart visualizes your score trajectory across exams against the official <strong>70% Pass Standard</strong>. Domain bars show mastery across Calculations, Cultural Safety, and Management of Care.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 5: 1-DEVICE & SYNC -->
+        <div id="guide-security" class="cs-tab-content guide-tab-content" hidden role="tabpanel">
+          <div style="background:#f1f5f9; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px 18px; margin-bottom:14px;">
+            <strong style="color:#334155; font-size:13.5px; display:flex; align-items:center; gap:6px;">
+              <span>🔒</span> 1-Device Policy &amp; Real-Time Cloud Sync
+            </strong>
+            <p style="margin:4px 0 0; font-size:12px; color:#475569; line-height:1.45;">
+              To protect candidate data and prevent unauthorized simultaneous sharing, each candidate key is bound to 1 active device.
+            </p>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
+            <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px;">
+              <h4 style="margin:0 0 6px; color:#0f172a; font-size:13px;">🔄 Switching Between Laptop &amp; Phone</h4>
+              <p style="margin:0; font-size:11.5px; color:#475569; line-height:1.45;">
+                When you log into your account from a new phone or laptop, the hub prompts: <em>"Account Active on Another Device"</em>. Simply click <strong>Confirm &amp; Transfer Device</strong>. Your account instantly transfers to your new screen and disconnects the previous device.
+              </p>
+            </div>
+
+            <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px;">
+              <h4 style="margin:0 0 6px; color:#0f172a; font-size:13px;">☁️ Live Google Sheet Integration</h4>
+              <p style="margin:0; font-size:11.5px; color:#475569; line-height:1.45;">
+                Backed by a live Google Apps Script Web App that automatically syncs candidate status, active device fingerprint, and login timestamps into the Google Sheet.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 6: AI CLINICAL TUTOR -->
+        <div id="guide-tutor" class="cs-tab-content guide-tab-content" hidden role="tabpanel">
+          <div style="background:#eef2ff; border:1.5px solid #c7d2fe; border-radius:12px; padding:14px 18px; margin-bottom:14px;">
+            <strong style="color:#3730a3; font-size:13.5px; display:flex; align-items:center; gap:6px;">
+              <span>🤖</span> Your 24/7 NZ RN Clinical AI Tutor
+            </strong>
+            <p style="margin:4px 0 0; font-size:12px; color:#4338ca; line-height:1.45;">
+              Get instant clinical breakdowns tailored to New Zealand nursing standards, Health Pathways, and the HDC Code of Rights.
+            </p>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
+            <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px;">
+              <h4 style="margin:0 0 6px; color:#0f172a; font-size:13px;">💬 One-Click Prompt Chips</h4>
+              <ul style="margin:6px 0 0; padding-left:16px; font-size:11.5px; color:#334155; line-height:1.5;">
+                <li><strong>👶 Explain Simply:</strong> Plain English explanation for beginners.</li>
+                <li><strong>🎯 Question Logic:</strong> Why option A is right and options B, C, D are distractors.</li>
+                <li><strong>🫀 60s Patho Breakdown:</strong> What went wrong inside cells and how the RN intervention fixes it.</li>
+                <li><strong>⚠️ Deadly Exam Trap:</strong> High-frequency distractor traps to avoid on exam day.</li>
+              </ul>
+            </div>
+
+            <div style="background:#ffffff; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px;">
+              <h4 style="margin:0 0 6px; color:#0f172a; font-size:13px;">🔑 Using Your Free Gemini API Key</h4>
+              <p style="margin:0; font-size:11.5px; color:#475569; line-height:1.45;">
+                Click <strong>🔑 API Key Settings</strong> in the topbar to paste your free Google AI Studio key. Your key is stored securely in your browser's private local storage.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
   <!-- Independent NZ Pathophysiology Guide Modal (No Bookmarks / No Tabs) -->
   <dialog id="pathoDialog" class="cs-dialog">
     <div class="cs-dialog-inner">
@@ -11396,7 +11667,7 @@
     function loadMangaPdfJsLibrary() {
       if (window.pdfjsLib) {
         if (!window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
-          window.pdfjsLib.GlobalWorkerOptions.workerSrc = "pdf.worker.min.js";
+          window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
         }
         return Promise.resolve(window.pdfjsLib);
       }
@@ -11406,7 +11677,7 @@
         sc.src = "pdf.min.js";
         sc.onload = () => {
           if (window.pdfjsLib) {
-            window.pdfjsLib.GlobalWorkerOptions.workerSrc = "pdf.worker.min.js";
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
             resolve(window.pdfjsLib);
           } else {
             resolve(null);
@@ -11430,36 +11701,43 @@
       return _mangaPdfLibPromise;
     }
 
+    let _mangaPdfLoadingPromise = null;
     async function ensureMangaPdfLoaded() {
       if (_mangaPdfDoc) return _mangaPdfDoc;
-      const lib = await loadMangaPdfJsLibrary();
-      if (!lib) return null;
+      if (_mangaPdfLoadingPromise) return _mangaPdfLoadingPromise;
 
-      // 1. If base64 data is available (guarantees local file:/// offline support without CORS issues)
-      if (typeof window.STATE_EXAM_PDF_BASE64 === "string" && window.STATE_EXAM_PDF_BASE64.length > 100) {
+      _mangaPdfLoadingPromise = (async () => {
+        const lib = await loadMangaPdfJsLibrary();
+        if (!lib) return null;
+
+        // Try base64 data first (fastest and guarantees local file support)
+        if (typeof window.STATE_EXAM_PDF_BASE64 === "string" && window.STATE_EXAM_PDF_BASE64.length > 100) {
+          try {
+            const raw = atob(window.STATE_EXAM_PDF_BASE64);
+            const uint8 = new Uint8Array(raw.length);
+            for (let i = 0; i < raw.length; i++) uint8[i] = raw.charCodeAt(i);
+            const task = lib.getDocument({ data: uint8 });
+            _mangaPdfDoc = await task.promise;
+            _mangaTotalPages = _mangaPdfDoc.numPages || 237;
+            return _mangaPdfDoc;
+          } catch (e) {
+            console.warn("Base64 decode failed, trying direct file:", e);
+          }
+        }
+
+        // Fallback to direct file
         try {
-          const raw = atob(window.STATE_EXAM_PDF_BASE64);
-          const uint8 = new Uint8Array(raw.length);
-          for (let i = 0; i < raw.length; i++) uint8[i] = raw.charCodeAt(i);
-          const task = lib.getDocument({ data: uint8 });
-          _mangaPdfDoc = await task.promise;
+          const loadingTask = lib.getDocument("State-Exam-Revision-Guide.pdf");
+          _mangaPdfDoc = await loadingTask.promise;
           _mangaTotalPages = _mangaPdfDoc.numPages || 237;
           return _mangaPdfDoc;
-        } catch (e) {
-          console.warn("Base64 PDF decode error, trying direct URL:", e);
+        } catch (err) {
+          console.warn("PDF.js direct fetch failed:", err);
+          return null;
         }
-      }
+      })();
 
-      // 2. Fetch directly (works on web servers / Netlify / HTTPS)
-      try {
-        const loadingTask = lib.getDocument("State-Exam-Revision-Guide.pdf");
-        _mangaPdfDoc = await loadingTask.promise;
-        _mangaTotalPages = _mangaPdfDoc.numPages || 237;
-        return _mangaPdfDoc;
-      } catch (err) {
-        console.warn("PDF.js direct fetch failed:", err);
-        return null;
-      }
+      return _mangaPdfLoadingPromise;
     }
 
     function buildMangaTocList() {
@@ -11508,7 +11786,7 @@
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const pageNum = parseInt(entry.target.getAttribute("data-page"), 10);
-            renderMangaStripPage(pageNum);
+            prioritizeMangaPage(pageNum);
           }
         });
       }, {
@@ -11517,12 +11795,40 @@
       });
 
       col.querySelectorAll(".manga-page-slot").forEach(slot => _mangaObserver.observe(slot));
+
+      // Immediately render initial visible pages so user never waits or sees blank placeholder
+      renderMangaStripPage(_mangaCurrentPage || 1);
+      if ((_mangaCurrentPage || 1) + 1 <= _mangaTotalPages) {
+        renderMangaStripPage((_mangaCurrentPage || 1) + 1);
+      }
     }
 
-    async function renderMangaStripPage(pageNum) {
-      if (_mangaRenderedPages.has(pageNum) || _mangaRenderingPages.has(pageNum)) return;
-      _mangaRenderingPages.add(pageNum);
+    let _mangaRenderQueue = [];
+    let _mangaIsRendering = false;
+
+    function renderMangaStripPage(pageNum) {
+      if (!pageNum || pageNum < 1 || pageNum > _mangaTotalPages) return;
+      if (_mangaRenderedPages.has(pageNum)) return;
+      if (!_mangaRenderQueue.includes(pageNum)) {
+        _mangaRenderQueue.push(pageNum);
+      }
+      _processMangaRenderQueue();
+    }
+
+    function prioritizeMangaPage(pageNum) {
+      if (!pageNum || pageNum < 1 || pageNum > _mangaTotalPages) return;
+      if (_mangaRenderedPages.has(pageNum)) return;
+      _mangaRenderQueue = [pageNum, ..._mangaRenderQueue.filter(p => p !== pageNum)];
+      _processMangaRenderQueue();
+    }
+
+    async function _processMangaRenderQueue() {
+      if (_mangaIsRendering || _mangaRenderQueue.length === 0) return;
+      _mangaIsRendering = true;
+      const pageNum = _mangaRenderQueue.shift();
+
       try {
+        if (_mangaRenderedPages.has(pageNum)) return;
         const doc = await ensureMangaPdfLoaded();
         if (!doc) return;
         const page = await doc.getPage(pageNum);
@@ -11534,17 +11840,14 @@
         const containerWidth = slot.clientWidth || 800;
         const unscaledViewport = page.getViewport({ scale: 1 });
         const scale = containerWidth / unscaledViewport.width;
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        const viewport = page.getViewport({ scale });
+        const viewport = page.getViewport({ scale: Math.max(scale, 1) });
 
-        canvas.width = Math.floor(viewport.width * dpr);
-        canvas.height = Math.floor(viewport.height * dpr);
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
         canvas.style.width = "100%";
         canvas.style.height = "auto";
 
         const ctx = canvas.getContext("2d");
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
         await page.render({ canvasContext: ctx, viewport }).promise;
 
         if (placeholder) placeholder.style.display = "none";
@@ -11552,15 +11855,18 @@
         slot.style.minHeight = "auto";
         _mangaRenderedPages.add(pageNum);
       } catch (err) {
-        console.warn("Failed rendering page", pageNum, err);
+        console.warn("Page render error:", pageNum, err);
       } finally {
-        _mangaRenderingPages.delete(pageNum);
+        _mangaIsRendering = false;
+        if (_mangaRenderQueue.length > 0) {
+          setTimeout(_processMangaRenderQueue, 16);
+        }
       }
     }
 
     async function renderMangaSinglePage(pageNum) {
       const container = document.getElementById("mangaSinglePageContainer");
-      const canvas = document.getElementById("mangaSingleCanvas");
+      let canvas = document.getElementById("mangaSingleCanvas");
       if (!canvas || !container) return;
       try {
         const doc = await ensureMangaPdfLoaded();
@@ -11569,26 +11875,30 @@
         const containerWidth = Math.min(container.clientWidth || 800, window.innerWidth - 32);
         const unscaledViewport = page.getViewport({ scale: 1 });
         const scale = containerWidth / unscaledViewport.width;
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        const viewport = page.getViewport({ scale });
+        const viewport = page.getViewport({ scale: Math.max(scale, 1) });
 
         if (_mangaSingleRenderTask && typeof _mangaSingleRenderTask.cancel === "function") {
           try { _mangaSingleRenderTask.cancel(); } catch (e) {}
         }
 
-        canvas.width = Math.floor(viewport.width * dpr);
-        canvas.height = Math.floor(viewport.height * dpr);
-        canvas.style.width = `${Math.floor(viewport.width)}px`;
+        const freshCanvas = canvas.cloneNode(true);
+        canvas.replaceWith(freshCanvas);
+        canvas = freshCanvas;
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        canvas.style.width = "100%";
         canvas.style.height = "auto";
-        canvas.style.display = "block";
 
         const ctx = canvas.getContext("2d");
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
         _mangaSingleRenderTask = page.render({ canvasContext: ctx, viewport });
         await _mangaSingleRenderTask.promise;
+        _mangaSingleRenderTask = null;
+
+        canvas.style.display = "block";
       } catch (err) {
-        console.warn("Single page render error", err);
+        if (err && err.name === "RenderingCancelledException") return;
+        console.warn("Single page render error:", err);
       }
     }
 
@@ -11624,6 +11934,8 @@
       pageNum = Math.max(1, Math.min(_mangaTotalPages, pageNum));
       _mangaCurrentPage = pageNum;
       if (_mangaMode === "continuous") {
+        prioritizeMangaPage(pageNum);
+        if (pageNum + 1 <= _mangaTotalPages) renderMangaStripPage(pageNum + 1);
         const slot = document.getElementById(`mangaPageSlot-${pageNum}`);
         if (slot) {
           slot.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -11679,7 +11991,9 @@
             if (stripCol) stripCol.style.display = "flex";
             if (singleCol) singleCol.style.display = "none";
             if (iframeFb) iframeFb.style.display = "none";
-            setTimeout(() => jumpToMangaPage(_mangaCurrentPage), 150);
+            renderMangaStripPage(_mangaCurrentPage);
+            if (_mangaCurrentPage + 1 <= _mangaTotalPages) renderMangaStripPage(_mangaCurrentPage + 1);
+            setTimeout(() => jumpToMangaPage(_mangaCurrentPage), 100);
           } else {
             if (stripCol) stripCol.style.display = "none";
             if (singleCol) singleCol.style.display = "flex";
@@ -11687,16 +12001,22 @@
             renderMangaSinglePage(_mangaCurrentPage);
           }
         } else {
-          console.warn("Canvas doc could not load, activating clean PDF reader fallback.");
-          if (iframeFb) {
-            iframeFb.style.display = "flex";
-            if (stripCol) stripCol.style.display = "none";
-            if (singleCol) singleCol.style.display = "none";
-            const frame = document.getElementById("pdfViewerFrame");
-            if (frame && (!frame.src || frame.src === "about:blank" || frame.src.endsWith("about:blank"))) {
-              frame.src = `State-Exam-Revision-Guide.pdf#page=${_mangaCurrentPage}`;
-            }
-          }
+          console.warn("Retrying canvas manga load...");
+          setTimeout(() => {
+            ensureMangaPdfLoaded().then(d => {
+              if (d) {
+                if (_mangaMode === "continuous") {
+                  if (stripCol) stripCol.style.display = "flex";
+                  if (singleCol) singleCol.style.display = "none";
+                  jumpToMangaPage(_mangaCurrentPage);
+                } else {
+                  if (stripCol) stripCol.style.display = "none";
+                  if (singleCol) singleCol.style.display = "flex";
+                  renderMangaSinglePage(_mangaCurrentPage);
+                }
+              }
+            });
+          }, 300);
         }
         updateMangaProgressUI(_mangaCurrentPage);
       });
@@ -11709,8 +12029,7 @@
         rv.classList.remove("zen-mode");
         document.body.style.overflow = "";
       }
-      const frame = document.getElementById("pdfViewerFrame");
-      if (frame) frame.src = "about:blank";
+      
       closeMangaDrawers();
       const chooserEl = document.getElementById("chooser");
       if (chooserEl) chooserEl.style.display = "block";
@@ -12563,6 +12882,7 @@
       const box = document.createElement("div");
       box.className = `feedback ${isScorable(q) ? (isCorrectAnswer ? "correct" : "incorrect") : ""}`;
 
+      // Penalty Notice if user clicked Reveal Explanation
       if (isRevealed) {
         const revNotice = document.createElement("div");
         revNotice.className = "revealed-penalty-notice";
@@ -12570,7 +12890,8 @@
         revNotice.innerHTML = `⚠️ <span>Explanation Revealed — Scored as <strong>Incorrect</strong> (No score credit awarded)</span>`;
         box.append(revNotice);
       }
-      
+
+      // Clinical Rationale & NZ Standard
       if (q.rationale) {
         const whyLabel = document.createElement("b");
         whyLabel.className = "feedback-label";
@@ -12587,6 +12908,7 @@
         }
       }
 
+      // Interactive Live AI Tutor
       const allowAiTutor = activeMode === "study" ? (store.studyAskAiTutor !== false) : (store.examAskAiTutor !== false);
       if (allowAiTutor) {
         const aiWrap = document.createElement("div");
@@ -12672,8 +12994,8 @@
     function createCard(q) {
       const exam=examById(store.selectedExam),item=attempt(exam.id),card=document.createElement("article");
       item.revealed = item.revealed || {};
-      // Strict Mock Exam Privacy Gate: Correct/incorrect classes and explanations strictly locked until exam completion!
-      const isRevealed = Boolean(item.completed);
+      // Strict Mock Exam Privacy Gate: Explanations locked until exam completion, OR when explicitly revealed for this question!
+      const isRevealed = Boolean(item.completed || (item.revealed && item.revealed[q.id]) || (store.tutorMode && item.answers[q.id] !== undefined));
 
       card.className="question-card";
       card.id=`question-${q.id}`;
@@ -13537,6 +13859,47 @@
         csDialog.querySelectorAll(".nav-auto-hidden").forEach(n => n.classList.remove("nav-auto-hidden"));
         if (csBody) csBody.scrollTop = 0;
       };
+
+    // First-Timer Walkthrough Guide Modal controls
+    const guideDialog = document.getElementById("firstTimerGuideModal");
+    if (guideDialog) {
+      const guideBody = guideDialog.querySelector(".cs-body");
+      const openGuide = () => {
+        guideDialog.showModal();
+        if (guideBody) guideBody.scrollTop = 0;
+      };
+      document.getElementById("openFirstTimerGuideBtn")?.addEventListener("click", openGuide);
+      document.getElementById("closeFirstTimerGuideBtn")?.addEventListener("click", () => guideDialog.close());
+      guideDialog.addEventListener("click", (e) => { if (e.target === guideDialog) guideDialog.close(); });
+
+      guideDialog.querySelectorAll(".guide-tab").forEach(tab => {
+        tab.addEventListener("click", () => {
+          guideDialog.querySelectorAll(".guide-tab").forEach(t => {
+            t.classList.remove("active");
+            t.setAttribute("aria-selected", "false");
+            t.style.background = "";
+            t.style.color = "";
+            t.style.borderColor = "";
+          });
+          guideDialog.querySelectorAll(".guide-tab-content").forEach(c => {
+            c.hidden = true;
+            c.style.display = "none";
+          });
+          tab.classList.add("active");
+          tab.setAttribute("aria-selected", "true");
+          tab.style.background = "#059669";
+          tab.style.color = "#fff";
+          tab.style.borderColor = "#059669";
+          const target = document.getElementById(tab.dataset.tab);
+          if (target) {
+            target.hidden = false;
+            target.style.display = "block";
+            if (guideBody) guideBody.scrollTop = 0;
+          }
+        });
+      });
+    }
+
       document.getElementById("openCheatSheet")?.addEventListener("click", openCs);
       document.getElementById("closeCheatSheet")?.addEventListener("click", () => { csDialog.close(); });
       document.getElementById("closeCheatSheetBtn")?.addEventListener("click", () => { csDialog.close(); });
